@@ -50,7 +50,7 @@ local plugins = {
     },
     config = function()
       require("chatgpt").setup({
-        api_key_cmd = "echo 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",
+        api_key_cmd = "echo 'my-api-key'",
       })
     end,
   }
