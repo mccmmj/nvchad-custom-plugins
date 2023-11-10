@@ -1,6 +1,8 @@
 require('lint').linters_by_ft = {
-  javascript = {'eslint'},
-  javascrtip = {'eslint'}
+  javascript = {'eslint_d'},
+  typescript = {'eslint_d'},
+  python = {'mypy','ruff'},
+  cpp = {'cpplint'}
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
