@@ -50,25 +50,6 @@ local plugins = {
     end,
   },
   {
-    "junegunn/fzf",
-    build = "./install --bin",
-  },
-  {
-    "ibhagwan/fzf-lua",
-    -- optional for icon support
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      -- calling `setup` is optional for customization
-      require("fzf-lua").setup({
-        'skim',
-        lsp = {
-        -- make lsp requests synchronous so they work with null-ls
-        async_or_timeout = 3000,
-        },
-      })
-    end,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
@@ -105,37 +86,50 @@ local plugins = {
       })
     end,
   },
-  -- {
-  --   "zbirenbaum/copilot.lua",
-  --   -- Lazy load when event occurs. Events are triggered
-  --   -- as mentioned in:
-  --   -- https://vi.stackexchange.com/a/4495/20389
-  --   event = "InsertEnter",
-  --   -- You can also have it load at immediately at
-  --   -- startup by commenting above and uncommenting below:
-  --   -- lazy = false
-  --   opts = overrides.copilot,
-  -- },
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   dependencies = {
-  --     {
-  --       "zbirenbaum/copilot-cmp",
-  --       config = function()
-  --         require("copilot_cmp").setup()
-  --       end,
-  --     },
-  --   },
-  --   opts = {
-  --     sources = {
-  --       { name = "nvim_lsp", group_index = 2 },
-  --       { name = "copilot",  group_index = 2 },
-  --       { name = "luasnip",  group_index = 2 },
-  --       { name = "buffer",   group_index = 2 },
-  --       { name = "nvim_lua", group_index = 2 },
-  --       { name = "path",     group_index = 2 },
-  --     },
-  --   },
-  -- },
+  {
+    "zbirenbaum/copilot.lua",
+    -- Lazy load when event occurs. Events are triggered
+    -- as mentioned in:
+    -- https://vi.stackexchange.com/a/4495/20389
+    event = "InsertEnter",
+    -- You can also have it load at immediately at
+    -- startup by commenting above and uncommenting below:
+    -- lazy = false
+    opts = overrides.copilot,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+    },
+    opts = {
+      sources = {
+        { name = "nvim_lsp", group_index = 2 },
+        { name = "copilot",  group_index = 2 },
+        { name = "luasnip",  group_index = 2 },
+        { name = "buffer",   group_index = 2 },
+        { name = "nvim_lua", group_index = 2 },
+        { name = "path",     group_index = 2 },
+      },
+    },
+  },
+  {
+  "ibhagwan/fzf-lua",
+  -- optional for icon support
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    -- calling `setup` is optional for customization
+    require("fzf-lua").setup({'fzf-vim'})
+  end
+  },
+  {
+    'mhinz/vim-grepper',
+    config = true
+  }
 }
 return plugins
